@@ -6,15 +6,14 @@
 		<link rel="shortcut icon"
 			href="https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/e1c35202403021432203027.png"
 			type="image/x-icon">
-		<title>小姐姐新世代2</title>
+		<title>小姐姐新世代</title>
 		<meta name="description" content="小姐姐新世代是一款集視頻聊天約會娛樂與一體的直播交友軟件。">
-		<meta name="keywords" content="小姐姐新世代2">
+		<meta name="keywords" content="小姐姐新世代">
 		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 		<meta property="og:type" content="website" data-rh="true">
-		<meta property="og:title" content="小姐姐新世代2">
+		<meta property="og:title" content="小姐姐新世代">
 		<meta property="og:description" content="小姐姐新世代是一款集視頻聊天約會娛樂與一體的直播交友軟件。">
-<!-- 		<meta property="og:image" content="https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg" data-rh="true">
-		<meta property="twitter:image" content="https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg" data-rh="true"> -->
+ 		<meta property="og:image" content="https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg" data-rh="true">
 		<meta property="og:url" content="https://kang785585.github.io">
 		<meta property="og:image:width" content="undefined" data-rh="true">
 		<meta property="og:image:height" content="undefined" data-rh="true">
@@ -173,9 +172,6 @@
 		}
 	</style>
 	<script type="text/javascript">
-
-		
-		
 		var videoId = ""
 		var urlParmStr = document.location.search; //获取问号后字符串
 		if (urlParmStr != '') {
@@ -189,61 +185,30 @@
 		var user_nickname = document.getElementById('user_nickname')
 		var video_title = document.getElementById('video_title')
 		var video_control = document.getElementById('video_control')
-
-						var meta = document.createElement('meta');
-						meta.setAttribute('property', 'og:image');
-            meta.setAttribute('content', 'https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg');
-            meta.setAttribute('data-rh', 'true');
-						document.getElementsByTagName('head')[0].appendChild(meta);
-
-		 
-
-						 
-
-		// <meta property="og:image" content="https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg" data-rh="true">
-		// <meta property="twitter:image" content="https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg" data-rh="true"> -->
-
-		// $(function() {
-		// 	$.ajax({
-		// 		url: "https://missmissnew.com/mapi/public/index.php/api/short_video_api/get_video_detail?video_id=" +
-		// 			videoId,
-		// 		type: "get",
-		// 		dataType: "json",
-		// 		success: function(data) {
-		// 			if (data.code == 200) {
-		// 				const videoObj = data.data.video
-		// 				video.src = videoObj.video_url
-		// 				video_control_tool_icon.src = videoObj.img
-		// 				awesome_text.innerHTML = videoObj.follow_num == 0 ? '點讚' : videoObj.follow_num
-		// 				comment_text.innerHTML = videoObj.comment == 0 ? '评论' : videoObj.comment
-		// 				user_nickname.innerHTML = '@' + videoObj.user_nickname
-		// 				video_title.innerHTML = videoObj.title
-
-
-		// 				var meta = document.createElement('meta');
-		// 				meta.name = "og:image";
-		// 				meta.content = videoObj.img;
-		// 				document.getElementsByTagName('head')[0].appendChild(meta);
-
-		// 				var meta2 = document.createElement('meta');
-		// 				meta2.name = "title";
-		// 				meta2.content = "小姐姐新世代" + videoObj.user_nickname;
-		// 				document.getElementsByTagName('head')[0].appendChild(meta2);
-
-		// 				var meta3 = document.createElement('meta');
-		// 				meta3.name = "og:description";
-		// 				meta3.content = "小姐姐新世代" + videoObj.title;
-		// 				document.getElementsByTagName('head')[0].appendChild(meta3);
-
-
-		// 			} else {
-		// 				displayAlert('error', data.msg, 1500)
-		// 			}
-		// 			// console.log(JSON.stringify(data))
-		// 		},
-		// 		error: function(msg) {}
-		// 	});
-		// });
+  
+		$(function() {
+			$.ajax({
+				url: "https://missmissnew.com/mapi/public/index.php/api/short_video_api/get_video_detail?video_id=" +
+					videoId,
+				type: "get",
+				dataType: "json",
+				success: function(data) {
+					if (data.code == 200) {
+						const videoObj = data.data.video
+						video.src = videoObj.video_url
+						video_control_tool_icon.src = videoObj.img
+						awesome_text.innerHTML = videoObj.follow_num == 0 ? '點讚' : videoObj.follow_num
+						comment_text.innerHTML = videoObj.comment == 0 ? '评论' : videoObj.comment
+						user_nickname.innerHTML = '@' + videoObj.user_nickname
+						video_title.innerHTML = videoObj.title
+					} else {
+						displayAlert('error', data.msg, 1500)
+					}
+					// console.log(JSON.stringify(data))
+				},
+				error: function(msg) {}
+			});
+		});
 
 
 		var videoPlayStateImage = document.getElementById('videoPlayStateImage')
