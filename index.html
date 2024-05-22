@@ -173,6 +173,9 @@
 		}
 	</style>
 	<script type="text/javascript">
+
+		
+		
 		var videoId = ""
 		var urlParmStr = document.location.search; //获取问号后字符串
 		if (urlParmStr != '') {
@@ -188,9 +191,12 @@
 		var video_control = document.getElementById('video_control')
 
 						var meta = document.createElement('meta');
-						meta.property = "og:image";
-						meta.content = "https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/6fdbc202404101757559171.png";
+						meta.setAttribute('property', 'og:image');
+            meta.setAttribute('content', 'https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg');
+            meta.setAttribute('data-rh', 'true');
 						document.getElementsByTagName('head')[0].appendChild(meta);
+
+		 
 
 						 
 
