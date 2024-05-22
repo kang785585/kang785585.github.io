@@ -13,15 +13,14 @@
 		<meta property="og:type" content="website" data-rh="true">
 		<meta property="og:title" content="小姐姐新世代2">
 		<meta property="og:description" content="小姐姐新世代是一款集視頻聊天約會娛樂與一體的直播交友軟件。">
-		<meta property="og:image" content="https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg" data-rh="true">
-		<meta property="twitter:image" content="https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg" data-rh="true">
+<!-- 		<meta property="og:image" content="https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg" data-rh="true">
+		<meta property="twitter:image" content="https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg" data-rh="true"> -->
 		<meta property="og:url" content="https://kang785585.github.io">
 		<meta property="og:image:width" content="undefined" data-rh="true">
 		<meta property="og:image:height" content="undefined" data-rh="true">
 	</head>
 	<body>
 		<div class="content">
-			<image src="https:\/\/xingwen-1313440711.cos.ap-singapore.myqcloud.com\/623aa202312301844213274.jpg"/>
 			<video id="myVideo" autoplay type="video/mp4" crossOrigin="anonymous" src="https:\/\/xingwen-1313440711.cos.ap-singapore.myqcloud.com\/0ae43202403272021059469.mp4?t=664de018&us=DMygui61&sign=31cf6904ab7c1a9428630e6407073dff" playsinline webkit-playsinline
 				x5-video-player-type="h5-page"></video>
 			<img id="videoPlayStateImage" class="play_state_image" src="static/play_video.png" alt="" />
@@ -188,6 +187,15 @@
 		var video_title = document.getElementById('video_title')
 		var video_control = document.getElementById('video_control')
 
+						var meta = document.createElement('meta');
+						meta.name = "og:image";
+						meta.content = "https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg";
+						document.getElementsByTagName('head')[0].appendChild(meta);
+
+						 
+
+		// <meta property="og:image" content="https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg" data-rh="true">
+		// <meta property="twitter:image" content="https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg" data-rh="true"> -->
 
 		// $(function() {
 		// 	$.ajax({
