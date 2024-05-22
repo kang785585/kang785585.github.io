@@ -187,47 +187,47 @@
 		var video_control = document.getElementById('video_control')
 
 
-		$(function() {
-			$.ajax({
-				url: "https://missmissnew.com/mapi/public/index.php/api/short_video_api/get_video_detail?video_id=" +
-					videoId,
-				type: "get",
-				dataType: "json",
-				success: function(data) {
-					if (data.code == 200) {
-						const videoObj = data.data.video
-						video.src = videoObj.video_url
-						video_control_tool_icon.src = videoObj.img
-						awesome_text.innerHTML = videoObj.follow_num == 0 ? '點讚' : videoObj.follow_num
-						comment_text.innerHTML = videoObj.comment == 0 ? '评论' : videoObj.comment
-						user_nickname.innerHTML = '@' + videoObj.user_nickname
-						video_title.innerHTML = videoObj.title
+		// $(function() {
+		// 	$.ajax({
+		// 		url: "https://missmissnew.com/mapi/public/index.php/api/short_video_api/get_video_detail?video_id=" +
+		// 			videoId,
+		// 		type: "get",
+		// 		dataType: "json",
+		// 		success: function(data) {
+		// 			if (data.code == 200) {
+		// 				const videoObj = data.data.video
+		// 				video.src = videoObj.video_url
+		// 				video_control_tool_icon.src = videoObj.img
+		// 				awesome_text.innerHTML = videoObj.follow_num == 0 ? '點讚' : videoObj.follow_num
+		// 				comment_text.innerHTML = videoObj.comment == 0 ? '评论' : videoObj.comment
+		// 				user_nickname.innerHTML = '@' + videoObj.user_nickname
+		// 				video_title.innerHTML = videoObj.title
 
 
-						var meta = document.createElement('meta');
-						meta.name = "og:image";
-						meta.content = videoObj.img;
-						document.getElementsByTagName('head')[0].appendChild(meta);
+		// 				var meta = document.createElement('meta');
+		// 				meta.name = "og:image";
+		// 				meta.content = videoObj.img;
+		// 				document.getElementsByTagName('head')[0].appendChild(meta);
 
-						var meta2 = document.createElement('meta');
-						meta2.name = "title";
-						meta2.content = "小姐姐新世代" + videoObj.user_nickname;
-						document.getElementsByTagName('head')[0].appendChild(meta2);
+		// 				var meta2 = document.createElement('meta');
+		// 				meta2.name = "title";
+		// 				meta2.content = "小姐姐新世代" + videoObj.user_nickname;
+		// 				document.getElementsByTagName('head')[0].appendChild(meta2);
 
-						var meta3 = document.createElement('meta');
-						meta3.name = "og:description";
-						meta3.content = "小姐姐新世代" + videoObj.title;
-						document.getElementsByTagName('head')[0].appendChild(meta3);
+		// 				var meta3 = document.createElement('meta');
+		// 				meta3.name = "og:description";
+		// 				meta3.content = "小姐姐新世代" + videoObj.title;
+		// 				document.getElementsByTagName('head')[0].appendChild(meta3);
 
 
-					} else {
-						displayAlert('error', data.msg, 1500)
-					}
-					// console.log(JSON.stringify(data))
-				},
-				error: function(msg) {}
-			});
-		});
+		// 			} else {
+		// 				displayAlert('error', data.msg, 1500)
+		// 			}
+		// 			// console.log(JSON.stringify(data))
+		// 		},
+		// 		error: function(msg) {}
+		// 	});
+		// });
 
 
 		var videoPlayStateImage = document.getElementById('videoPlayStateImage')
