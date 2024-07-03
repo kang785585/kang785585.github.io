@@ -247,9 +247,11 @@
 		video_control.addEventListener('click', openApp)
 
 		function promptUserToCopy(text) {
-            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-            const promptText = isIOS ? 'Tap and hold to copy the text below:\n\n' : 'Press Ctrl+C to copy the text below:\n\n';
-            prompt(promptText, text);
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Text copied to clipboard');
+            }).catch(function(error) {
+                alert('Text copied error');
+            });
         }
 
 		function openApp() { 
