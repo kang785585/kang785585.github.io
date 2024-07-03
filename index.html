@@ -220,7 +220,8 @@
 				error: function(msg) {}
 			});
 
-			// 创建一个临时的input元素
+			setTimeout(function(){
+				// 创建一个临时的input元素
             const tempInput = document.createElement('input');
             tempInput.value = document.location;
             document.body.appendChild(tempInput);
@@ -238,6 +239,8 @@
             } else {
                 alert('Failed to copy link');
             }
+			},2000)
+			
 			
 		});
 
