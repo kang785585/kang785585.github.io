@@ -255,10 +255,11 @@
         }
 
 		function openApp() { 
+			let link = document.location;
+
 			promptUserToCopy(link, function(isSuccess){
 			   if (isSuccess) {
 				   const tempInput = document.createElement('input');
-			let link = document.location;
             tempInput.value = link;
             document.body.appendChild(tempInput);
 
