@@ -246,20 +246,17 @@
 
 		video_control.addEventListener('click', openApp)
 
-		function promptUserToCopy(text,callback) {
-            navigator.clipboard.writeText(text).then(function() {
+	  
+		function openApp() { 
+			let link = document.location;
+
+			navigator.clipboard.writeText(text).then(function() {
                callback(true);
             }).catch(function(error) {
                 callback(false);
             });
-        }
 
-		function openApp() { 
-			let link = document.location;
-
-			promptUserToCopy(link, function(isSuccess){
-			   if (isSuccess) {
-				   const tempInput = document.createElement('input');
+			 const tempInput = document.createElement('input');
             tempInput.value = link;
             document.body.appendChild(tempInput);
 
@@ -268,8 +265,6 @@
             tempInput.setSelectionRange(0, 99999); // For mobile devices
             // 移除临时元素
             document.body.removeChild(tempInput); 
-			   }
-			})
 			
 			
 			var ua = window.navigator.userAgent.toLowerCase();
