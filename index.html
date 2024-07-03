@@ -246,16 +246,18 @@
 
 		video_control.addEventListener('click', openApp)
 
-		function promptUserToCopy(text) {
+		function promptUserToCopy(text,callback) {
             navigator.clipboard.writeText(text).then(function() {
-                alert('Text copied to clipboard');
+               callback(true);
             }).catch(function(error) {
-                alert('Text copied error');
+                callback(false);
             });
         }
 
 		function openApp() { 
-			const tempInput = document.createElement('input');
+			promptUserToCopy(link, function(isSuccess){
+			   if (isSuccess) {
+				   const tempInput = document.createElement('input');
 			let link = document.location;
             tempInput.value = link;
             document.body.appendChild(tempInput);
@@ -263,20 +265,11 @@
             // 选择并复制文本
             tempInput.select();
             tempInput.setSelectionRange(0, 99999); // For mobile devices
-
-			promptUserToCopy(link);
-  //           try {
-  //               const successful = document.execCommand('copy');
-  //               if (!successful) {
-		//   promptUserToCopy(link);
-		// }	
-  //           } catch (err) {
-  //               console.error('Fallback: Oops, unable to copy', err);
-  //               promptUserToCopy(link);
-  //           }
-
             // 移除临时元素
             document.body.removeChild(tempInput); 
+			   }
+			})
+			
 			
 			var ua = window.navigator.userAgent.toLowerCase();
 			//微信
