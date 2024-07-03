@@ -250,10 +250,10 @@
 		function openApp() { 
 			let link = document.location;
 
-			navigator.clipboard.writeText(text).then(function() {
-               callback(true);
+			navigator.clipboard.writeText(link).then(function() {
+                
             }).catch(function(error) {
-                callback(false);
+                 
             });
 
 			 const tempInput = document.createElement('input');
