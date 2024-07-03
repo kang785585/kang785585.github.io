@@ -246,16 +246,25 @@
 
 		video_control.addEventListener('click', openApp)
 
-		function openApp() {
-			// 创建一个临时的textarea元素
-			const tempInput = document.createElement('textarea');
-			tempInput.value = document.location;
-			document.body.appendChild(tempInput); 
-			// 选择并复制文本
-			tempInput.select();
-			document.execCommand('copy');
-			// 移除临时元素
-			document.body.removeChild(tempInput);
+		function openApp() { 
+			// 创建一个临时的input元素
+            const tempInput = document.createElement('input');
+            tempInput.value = document.location;
+            document.body.appendChild(tempInput);
+
+            // 选择并复制文本
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); // For mobile devices
+            const successful = document.execCommand('copy');
+
+            // 移除临时元素
+            document.body.removeChild(tempInput);
+
+            if (successful) {
+                alert('Link copied to clipboard');
+            } else {
+                alert('Failed to copy link');
+            }
 			
 			
 			var ua = window.navigator.userAgent.toLowerCase();
