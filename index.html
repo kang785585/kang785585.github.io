@@ -13,7 +13,7 @@
 		<meta property="og:type" content="website" data-rh="true">
 		<meta property="og:title" content="小姐姐新世代">
 		<meta property="og:description" content="小姐姐新世代是一款集視頻聊天約會娛樂與一體的直播交友軟件。">
- 		<meta property="og:image" content="https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg" data-rh="true">
+ 		<!-- <meta property="og:image" content="https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg" data-rh="true"> -->
 		<meta property="og:url" content="https://kang785585.github.io">
 		<meta property="og:image:width" content="undefined" data-rh="true">
 		<meta property="og:image:height" content="undefined" data-rh="true">
@@ -195,7 +195,15 @@
 		myVideoSource.src = "http://xingwen-1313440711.cos.ap-singapore.myqcloud.com/80e0c202405220721454173.mp4?t=66593409&us=RmXTKs69&sign=b8bcc2fe298bf77a0c45a8f4175a9d1c"
 
 		// video.poster = "http://xingwen-1313440711.cos.ap-singapore.myqcloud.com/277f4202403272021023472.jpg"
-	 			 
+		
+		const addMeta = (name, content) => {
+		    const meta = document.createElement('meta');
+		    meta.content = content;
+		    meta.name = name;
+		    document.getElementsByTagName('head')[0].appendChild(meta);
+		}; 
+	    addMeta('og:image','https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg');	 
+ 		
   
 		$(function() {
 			$.ajax({
