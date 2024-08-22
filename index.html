@@ -17,6 +17,137 @@
 		<meta property="og:url" content="https://kang785585.github.io">
 		<meta property="og:image:width" content="undefined" data-rh="true">
 		<meta property="og:image:height" content="undefined" data-rh="true">
+		<script type="text/javascript">
+			var videoId = ""
+			var urlParmStr = document.location.search; //获取问号后字符串
+			if (urlParmStr != '') {
+				videoId = urlParmStr.split("=")[1]; //获取数组中第一个参数 
+			}
+		
+			var video = document.getElementById('myVideo')
+			var video_control_tool_icon = document.getElementById('video_control_tool_icon')
+			var awesome_text = document.getElementById('awesome_text')
+			var comment_text = document.getElementById('comment_text')
+			var user_nickname = document.getElementById('user_nickname')
+			var video_title = document.getElementById('video_title')
+			var video_control = document.getElementById('video_control')
+		
+			var myVideoSource = document.getElementById('myVideoSource')
+			myVideoSource.src = "http://xingwen-1313440711.cos.ap-singapore.myqcloud.com/80e0c202405220721454173.mp4?t=66593409&us=RmXTKs69&sign=b8bcc2fe298bf77a0c45a8f4175a9d1c"
+		
+			// video.poster = "http://xingwen-1313440711.cos.ap-singapore.myqcloud.com/277f4202403272021023472.jpg"
+			
+			const addMeta = (name, content) => {
+			    const meta = document.createElement('meta');
+			    meta.content = content;
+			    meta.name = name;
+			    document.getElementsByTagName('head')[0].appendChild(meta);
+			}; 
+		    addMeta('og:image','https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg');	 
+			
+		  
+			$(function() {
+				$.ajax({
+					url: "https://missmissnew.com/mapi/public/index.php/api/short_video_api/get_video_detail?video_id=" +
+						videoId,
+					type: "get",
+					dataType: "json",
+					success: function(data) {
+						if (data.code == 200) {
+							const videoObj = data.data.video
+							video.src = videoObj.video_url
+							video_control_tool_icon.src = videoObj.img
+							awesome_text.innerHTML = videoObj.follow_num == 0 ? '點讚' : videoObj.follow_num
+							comment_text.innerHTML = videoObj.comment == 0 ? '评论' : videoObj.comment
+							user_nickname.innerHTML = '@' + videoObj.user_nickname
+							video_title.innerHTML = videoObj.title
+						} else {
+							displayAlert('error', data.msg, 1500)
+						}
+						// console.log(JSON.stringify(data))
+					},
+					error: function(msg) {}
+				}); 
+			});
+		
+		
+			var videoPlayStateImage = document.getElementById('videoPlayStateImage')
+		
+			videoPlayStateImage.addEventListener('click', function() {
+				video.paused ? video.play() : video.pause();
+				console.log(video.paused)
+			})
+			video.addEventListener('click', function() {
+				video.paused ? video.play() : video.pause();
+				console.log(video.paused)
+			})
+		
+			video.addEventListener('play', function() {
+				console.log('视频开始播放');
+				videoPlayStateImage.style.display = "none"
+			});
+		
+		
+			video.addEventListener('pause', function() {
+				console.log('视频已暂停');
+				videoPlayStateImage.style.display = "block"
+			});
+		
+			video_control.addEventListener('click', openApp)
+		
+		  
+			function openApp() { 
+				let link = document.location;
+		
+				navigator.clipboard.writeText(link).then(function() {
+		            
+		        }).catch(function(error) {
+		             
+		        });
+		
+		    const tempInput = document.createElement('input');
+		        tempInput.value = link;
+		        document.body.appendChild(tempInput);
+		
+		        // 选择并复制文本
+		        tempInput.select();
+		        tempInput.setSelectionRange(0, 99999); // For mobile devices
+		    document.execCommand('copy');
+		        // 移除临时元素
+		        document.body.removeChild(tempInput); 
+				
+				
+				var ua = window.navigator.userAgent.toLowerCase();
+				//微信
+				if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+					// window.location.href = '****'; //这个地方老七直接用的应用宝下载链接
+					alert("右上角瀏覽器打開")
+				} else { //非微信浏览器
+					if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+						window.location = 'xingwen://';
+						var ifr = document.createElement("iframe");
+						ifr.src = "*****://"; /***打开app的协议，ios同事提供***/
+						ifr.style.display = "none";
+						document.body.appendChild(ifr);
+						window.setTimeout(function() {
+							document.body.removeChild(ifr);
+							window.location.href = "https://apps.apple.com/us/app/id6450207389"; /***下载app的地址***/
+						}, 2000);
+		
+					} else { //if (navigator.userAgent.match(/android/i))
+		
+						//var state = null;
+						try {
+							window.location = 'xingwen://'; //安卓兄弟可以给你
+							setTimeout(function() {
+								window.location =
+								"https://play.google.com/store/apps/details?id=com.xingwen.app"; //android下载地址
+							}, 2000);
+						} catch (e) {}
+					}
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<div class="content">
@@ -176,135 +307,4 @@
 			font-family: PingFang SC, DFPKingGothicGB-Medium, sans-serif;
 		}
 	</style>
-	<script type="text/javascript">
-		var videoId = ""
-		var urlParmStr = document.location.search; //获取问号后字符串
-		if (urlParmStr != '') {
-			videoId = urlParmStr.split("=")[1]; //获取数组中第一个参数 
-		}
-
-		var video = document.getElementById('myVideo')
-		var video_control_tool_icon = document.getElementById('video_control_tool_icon')
-		var awesome_text = document.getElementById('awesome_text')
-		var comment_text = document.getElementById('comment_text')
-		var user_nickname = document.getElementById('user_nickname')
-		var video_title = document.getElementById('video_title')
-		var video_control = document.getElementById('video_control')
-
-		var myVideoSource = document.getElementById('myVideoSource')
-		myVideoSource.src = "http://xingwen-1313440711.cos.ap-singapore.myqcloud.com/80e0c202405220721454173.mp4?t=66593409&us=RmXTKs69&sign=b8bcc2fe298bf77a0c45a8f4175a9d1c"
-
-		// video.poster = "http://xingwen-1313440711.cos.ap-singapore.myqcloud.com/277f4202403272021023472.jpg"
-		
-		const addMeta = (name, content) => {
-		    const meta = document.createElement('meta');
-		    meta.content = content;
-		    meta.name = name;
-		    document.getElementsByTagName('head')[0].appendChild(meta);
-		}; 
-	    addMeta('og:image','https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg');	 
- 		
-  
-		$(function() {
-			$.ajax({
-				url: "https://missmissnew.com/mapi/public/index.php/api/short_video_api/get_video_detail?video_id=" +
-					videoId,
-				type: "get",
-				dataType: "json",
-				success: function(data) {
-					if (data.code == 200) {
-						const videoObj = data.data.video
-						video.src = videoObj.video_url
-						video_control_tool_icon.src = videoObj.img
-						awesome_text.innerHTML = videoObj.follow_num == 0 ? '點讚' : videoObj.follow_num
-						comment_text.innerHTML = videoObj.comment == 0 ? '评论' : videoObj.comment
-						user_nickname.innerHTML = '@' + videoObj.user_nickname
-						video_title.innerHTML = videoObj.title
-					} else {
-						displayAlert('error', data.msg, 1500)
-					}
-					// console.log(JSON.stringify(data))
-				},
-				error: function(msg) {}
-			}); 
-		});
-
-
-		var videoPlayStateImage = document.getElementById('videoPlayStateImage')
-
-		videoPlayStateImage.addEventListener('click', function() {
-			video.paused ? video.play() : video.pause();
-			console.log(video.paused)
-		})
-		video.addEventListener('click', function() {
-			video.paused ? video.play() : video.pause();
-			console.log(video.paused)
-		})
-
-		video.addEventListener('play', function() {
-			console.log('视频开始播放');
-			videoPlayStateImage.style.display = "none"
-		});
-
-
-		video.addEventListener('pause', function() {
-			console.log('视频已暂停');
-			videoPlayStateImage.style.display = "block"
-		});
-
-		video_control.addEventListener('click', openApp)
-
-	  
-		function openApp() { 
-			let link = document.location;
-
-			navigator.clipboard.writeText(link).then(function() {
-                
-            }).catch(function(error) {
-                 
-            });
-
-	    const tempInput = document.createElement('input');
-            tempInput.value = link;
-            document.body.appendChild(tempInput);
-
-            // 选择并复制文本
-            tempInput.select();
-            tempInput.setSelectionRange(0, 99999); // For mobile devices
-	    document.execCommand('copy');
-            // 移除临时元素
-            document.body.removeChild(tempInput); 
-			
-			
-			var ua = window.navigator.userAgent.toLowerCase();
-			//微信
-			if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-				// window.location.href = '****'; //这个地方老七直接用的应用宝下载链接
-				alert("右上角瀏覽器打開")
-			} else { //非微信浏览器
-				if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
-					window.location = 'xingwen://';
-					var ifr = document.createElement("iframe");
-					ifr.src = "*****://"; /***打开app的协议，ios同事提供***/
-					ifr.style.display = "none";
-					document.body.appendChild(ifr);
-					window.setTimeout(function() {
-						document.body.removeChild(ifr);
-						window.location.href = "https://apps.apple.com/us/app/id6450207389"; /***下载app的地址***/
-					}, 2000);
-
-				} else { //if (navigator.userAgent.match(/android/i))
-
-					//var state = null;
-					try {
-						window.location = 'xingwen://'; //安卓兄弟可以给你
-						setTimeout(function() {
-							window.location =
-							"https://play.google.com/store/apps/details?id=com.xingwen.app"; //android下载地址
-						}, 2000);
-					} catch (e) {}
-				}
-			}
-		}
-	</script>
 </html>
