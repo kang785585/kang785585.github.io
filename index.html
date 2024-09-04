@@ -63,8 +63,11 @@
 		  
 			$(function() {
 				
+				const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+				var ua = window.navigator.userAgent.toLowerCase();
+
 				var getAgent = document.getElementById('getagent')
-				getAgent.innerHTML = "101"
+				getAgent.innerHTML = "userAgent = " + userAgent + "\n " + "ua = " + ua
 				
 				
 				$.ajax({
