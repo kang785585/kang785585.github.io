@@ -63,11 +63,11 @@
 		  
 			$(function() {
 				
-				const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-				var ua = window.navigator.userAgent.toLowerCase();
+				// const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+				// var ua = window.navigator.userAgent.toLowerCase();
 
-				var getAgent = document.getElementById('getagent')
-				getAgent.innerHTML = "userAgent = " + userAgent + "\n " + "ua = " + ua
+				// var getAgent = document.getElementById('getagent')
+				// getAgent.innerHTML = "userAgent = " + userAgent + "\n " + "ua = " + ua
 				
 				
 				$.ajax({
@@ -157,6 +157,9 @@
 							window.location.href = "https://apps.apple.com/us/app/id6450207389"; /***下载app的地址***/
 						}, 2000);
 		
+					} else if (ua.match(/fb_iab/i)){
+						//FB直接跳应用商店
+						window.location = "https://play.google.com/store/apps/details?id=com.xingwen.app"; //android下载地址
 					} else { //if (navigator.userAgent.match(/android/i))
 		
 						//var state = null;
@@ -165,7 +168,7 @@
 							setTimeout(function() {
 								window.location =
 								"https://play.google.com/store/apps/details?id=com.xingwen.app"; //android下载地址
-							}, 2000);
+							}, 3000);
 						} catch (e) {}
 					}
 				}
@@ -213,7 +216,7 @@
 				<h4 id="video_title"></h4>
 			</div>
 			
-			<h2 id="getagent" style="position: absolute;top: 100px;width:90%;left: 0px;font-size: 20px;color: #f00;background-color: green;"></h2>
+			// <h2 id="getagent" style="position: absolute;top: 100px;width:90%;left: 0px;font-size: 20px;color: #f00;background-color: green;"></h2>
 			
 		</div>
 	</body>
