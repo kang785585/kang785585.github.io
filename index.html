@@ -13,29 +13,50 @@
 		<meta property="og:type" content="website" data-rh="true">
 		<meta property="og:title" content="小姐姐新世代">
 		<meta property="og:description" content="小姐姐新世代是一款集視頻聊天約會娛樂與一體的直播交友軟件。">
- 		<!-- <meta property="og:image" content="https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg" data-rh="true"> -->
+		<!-- <meta property="og:image" content="https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg" data-rh="true"> -->
 		<!-- <meta property="og:url" content="https://kang785585.github.io"> -->
 		<meta property="og:url" content="https://missmissnew.com/admin/public/index.php/admin/index/index.html">
 		<meta property="og:image:width" content="undefined" data-rh="true">
 		<meta property="og:image:height" content="undefined" data-rh="true">
-		
+
 		<meta property="al:ios:url" content="xingwen://" />
 		<meta property="al:ios:app_store_id" content="6450207389" />
 		<meta property="al:ios:app_name" content="小姐姐新世代" />
 		<meta property="al:android:url" content="xingwen://" />
 		<meta property="al:android:app_name" content="小姐姐新世代" />
 		<meta property="al:android:package" content="com.xingwen.app" />
-		
-		
+
+
 		<meta property="al:web:url" content="https://kang785585.github.io/?s=20" />
-		
+
+		<script src="https://g.alicdn.com/jssdk/u-link/index.min.js"></script>
 		<script type="text/javascript">
 			var videoId = ""
 			var urlParmStr = document.location.search; //获取问号后字符串
+			var paramObj = {};
 			if (urlParmStr != '') {
-				videoId = urlParmStr.split("=")[1]; //获取数组中第一个参数 
+				let queryString = urlParmStr.substring(1);
+				var params = queryString.split('&');
+				params.forEach(function(param) {
+					var parts = param.split('=');
+					if (parts.length === 2) {
+						paramObj[parts[0]] = decodeURIComponent(parts[1]); // 解码URL编码的值
+					}
+				});
+				videoId = paramObj.id
 			}
-		
+			// https://missmissnew.com/mapi/public/video/homeVideo.html?id=159&shareCode=36
+
+			ULink([{
+				id: "usr10obvm7i26qu0", // 后台生成的裂变活动LinkID
+				data: paramObj,
+				selector: "#xxl", //按钮的名称
+				// 可选高级功能，具体含义请看下方U-Link API文档
+				auto: true,
+				timeout: 2000,
+				lazy: false
+			}]);
+
 			var video = document.getElementById('myVideo')
 			var video_control_tool_icon = document.getElementById('video_control_tool_icon')
 			var awesome_text = document.getElementById('awesome_text')
@@ -43,35 +64,35 @@
 			var user_nickname = document.getElementById('user_nickname')
 			var video_title = document.getElementById('video_title')
 			var video_control = document.getElementById('video_control')
-			
-			
-			
-		
+
+
+
+
 			var myVideoSource = document.getElementById('myVideoSource')
 			// myVideoSource.src = "http://xingwen-1313440711.cos.ap-singapore.myqcloud.com/80e0c202405220721454173.mp4?t=66593409&us=RmXTKs69&sign=b8bcc2fe298bf77a0c45a8f4175a9d1c"
-		
+
 			// video.poster = "http://xingwen-1313440711.cos.ap-singapore.myqcloud.com/277f4202403272021023472.jpg"
-			
-			 
-			
+
+
+
 			const addMeta = (name, content) => {
-			    const meta = document.createElement('meta');
-			    meta.content = content;
-			    meta.name = name;
-			    document.getElementsByTagName('head')[0].appendChild(meta);
-			}; 
-		    addMeta('og:image','https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg');	 
-			
-		  
+				const meta = document.createElement('meta');
+				meta.content = content;
+				meta.name = name;
+				document.getElementsByTagName('head')[0].appendChild(meta);
+			};
+			addMeta('og:image', 'https://xingwen-1313440711.cos.ap-singapore.myqcloud.com/623aa202312301844213274.jpg');
+
+
 			$(function() {
-				
+
 				// const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 				// var ua = window.navigator.userAgent.toLowerCase();
 
 				// var getAgent = document.getElementById('getagent')
 				// getAgent.innerHTML = "userAgent = " + userAgent + "\n " + "ua = " + ua
-				
-				
+
+
 				$.ajax({
 					url: "https://missmissnew.com/mapi/public/index.php/api/short_video_api/get_video_detail?video_id=" +
 						videoId,
@@ -92,12 +113,12 @@
 						// console.log(JSON.stringify(data))
 					},
 					error: function(msg) {}
-				}); 
+				});
 			});
-		
-		
+
+
 			var videoPlayStateImage = document.getElementById('videoPlayStateImage')
-		
+
 			videoPlayStateImage.addEventListener('click', function() {
 				video.paused ? video.play() : video.pause();
 				console.log(video.paused)
@@ -106,42 +127,42 @@
 				video.paused ? video.play() : video.pause();
 				console.log(video.paused)
 			})
-		
+
 			video.addEventListener('play', function() {
 				console.log('视频开始播放');
 				videoPlayStateImage.style.display = "none"
 			});
-		
-		
+
+
 			video.addEventListener('pause', function() {
 				console.log('视频已暂停');
 				videoPlayStateImage.style.display = "block"
 			});
-		
+
 			video_control.addEventListener('click', openApp)
-		
-		  
-			function openApp() { 
+
+
+			function openApp() {
 				let link = document.location;
-		
+
 				navigator.clipboard.writeText(link).then(function() {
-		            
-		        }).catch(function(error) {
-		             
-		        });
-		
-		    const tempInput = document.createElement('input');
-		        tempInput.value = link;
-		        document.body.appendChild(tempInput);
-		
-		        // 选择并复制文本
-		        tempInput.select();
-		        tempInput.setSelectionRange(0, 99999); // For mobile devices
-		    document.execCommand('copy');
-		        // 移除临时元素
-		        document.body.removeChild(tempInput); 
-				
-				
+
+				}).catch(function(error) {
+
+				});
+
+				const tempInput = document.createElement('input');
+				tempInput.value = link;
+				document.body.appendChild(tempInput);
+
+				// 选择并复制文本
+				tempInput.select();
+				tempInput.setSelectionRange(0, 99999); // For mobile devices
+				document.execCommand('copy');
+				// 移除临时元素
+				document.body.removeChild(tempInput);
+
+
 				var ua = window.navigator.userAgent.toLowerCase();
 				//微信
 				if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -158,18 +179,18 @@
 							document.body.removeChild(ifr);
 							window.location.href = "https://apps.apple.com/us/app/id6450207389"; /***下载app的地址***/
 						}, 2000);
-		
-					} else if (ua.match(/fb_iab/i)){
+
+					} else if (ua.match(/fb_iab/i)) {
 						//FB直接跳应用商店
 						window.location = "https://play.google.com/store/apps/details?id=com.xingwen.app"; //android下载地址
 					} else { //if (navigator.userAgent.match(/android/i))
-		
+
 						//var state = null;
 						try {
 							window.location = 'xingwen://'; //安卓兄弟可以给你
 							setTimeout(function() {
 								window.location =
-								"https://play.google.com/store/apps/details?id=com.xingwen.app"; //android下载地址
+									"https://play.google.com/store/apps/details?id=com.xingwen.app"; //android下载地址
 							}, 3000);
 						} catch (e) {}
 					}
@@ -179,13 +200,15 @@
 	</head>
 	<body>
 		<div class="content">
-<!-- 			<video id="myVideo" autoplay controls="controls" poster="$posterUrl" crossOrigin="anonymous" playsinline webkit-playsinline x5-video-player-type="h5-page" style="width: 100%;">
+			<!-- 			<video id="myVideo" autoplay controls="controls" poster="$posterUrl" crossOrigin="anonymous" playsinline webkit-playsinline x5-video-player-type="h5-page" style="width: 100%;">
                                <source src='$srcUrl' type="video/mp4">
                         </video> -->
-			<video id="myVideo" autoplay type="video/mp4" poster="http://xingwen-1313440711.cos.ap-singapore.myqcloud.com/277f4202403272021023472.jpg" crossOrigin="anonymous"  playsinline webkit-playsinline x5-video-player-type="h5-page">
-				 <source id="myVideoSource"  type="video/mp4">
+			<video id="myVideo" autoplay type="video/mp4"
+				poster="http://xingwen-1313440711.cos.ap-singapore.myqcloud.com/277f4202403272021023472.jpg"
+				crossOrigin="anonymous" playsinline webkit-playsinline x5-video-player-type="h5-page">
+				<source id="myVideoSource" type="video/mp4">
 			</video>
-			
+
 			<img id="videoPlayStateImage" class="play_state_image" src="static/play_video.png" alt="" />
 			<div class="top">
 				<img class="img" src="./static/logo.png" alt="logo">
@@ -217,9 +240,11 @@
 				<h3 id="user_nickname">@</h3>
 				<h4 id="video_title"></h4>
 			</div>
-			
-			// <h2 id="getagent" style="position: absolute;top: 100px;width:90%;left: 0px;font-size: 20px;color: #f00;background-color: green;"></h2>
-			
+
+			// <h2 id="getagent"
+				style="position: absolute;top: 100px;width:90%;left: 0px;font-size: 20px;color: #f00;background-color: green;">
+			</h2>
+
 		</div>
 	</body>
 	<style type="text/css">
