@@ -50,7 +50,7 @@
 			ULink([{
 				id: "usr10obvm7i26qu0", // 后台生成的裂变活动LinkID
 				data: paramObj,
-				selector: "#xxl", //按钮的名称
+				selector: ".openapp", //按钮的名称
 				// 可选高级功能，具体含义请看下方U-Link API文档
 				auto: true,
 				timeout: 2000,
@@ -212,9 +212,9 @@
 			<img id="videoPlayStateImage" class="play_state_image" src="static/play_video.png" alt="" />
 			<div class="top">
 				<img class="img" src="./static/logo.png" alt="logo">
-				<button class="btn1" onclick="openApp()">立即打開</button>
+				<button class="btn1 openapp" onclick="openApp()">立即打開</button>
 			</div>
-			<div id="video_control" class="video-control-tool">
+			<div id="video_control" class="video-control-tool openapp">
 				<div class="video-control-tool-icon-box">
 					<img id="video_control_tool_icon" class="video-control-tool-icon" src="static/logo.png" alt="" />
 					<img class="video-control-tool-add" src="static/add_attention.png" alt="" />
