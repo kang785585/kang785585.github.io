@@ -52,12 +52,10 @@
 				data: paramObj,
 				selector: "#xxl", //按钮的名称
 				// 可选高级功能，具体含义请看下方U-Link API文档
-				auto: true,
+				auto: false,
 				timeout: 2000,
 				lazy: false
-			}]);
-			
-			alert(JSON.stringify(paramObj))
+			}]); 
 
 			var video = document.getElementById('myVideo')
 			var video_control_tool_icon = document.getElementById('video_control_tool_icon')
