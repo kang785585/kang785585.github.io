@@ -54,8 +54,53 @@
 				// 可选高级功能，具体含义请看下方U-Link API文档
 				auto: false,
 				timeout: 2000,
-				lazy: false
+				lazy: false,
+				proxyOpenDownload: myDownloadStyle,
 			}]); 
+			
+			// 自定义下载样式
+			function myDownloadStyle(defaultAction, LinkInstance) {
+				if(downloadStyle === true) {
+					var element = document.getElementById("downloadStyle"); // 在body标签后面添加一个元素 <div id="downloadStyle"></div>
+			    element.innerHTML = `
+			      <div id="download-window" style="
+			        width: 70%;
+			        height: 130px;
+			        padding: 20px;
+			        background-color: #fff;
+			        border: 1px solid #ccc;
+			        position: absolute;
+			        top: 30%;
+			        left: 10%">
+			      <div onclick="window.ulinkCloseDownloadTip()" style="
+			        position: absolute;
+			        top: 4px;
+			        right: 10px;
+			      ">X</div>
+			      <p>请点击下方下载按钮跳转至商店进行下载!</p>
+			      <button style="
+			         width: 70%;
+			         height: 40px;
+			         background-color: #3b82fe;
+			         color: #fff;
+			         border-radius: 20px;
+			         border: none;
+			         margin: 0 auto;
+			         display: block;
+			       " onclick="window.ulinkOpenDownload()">立即下载</button>
+			       </div>
+			                `
+			       window.ulinkCloseDownloadTip = function() {
+			           document.getElementById('download-window').remove();
+			       }
+			       window.ulinkOpenDownload = function() {
+			           window.location.href = LinkInstance.solution.downloadUrl
+			       }
+			    } else {
+			       defaultAction();
+			       console.log("原版下载样式")
+			    }
+			}
 
 			var video = document.getElementById('myVideo')
 			var video_control_tool_icon = document.getElementById('video_control_tool_icon')
