@@ -46,17 +46,6 @@
 				videoId = paramObj.id
 			}
 			// https://missmissnew.com/mapi/public/video/homeVideo.html?id=159&shareCode=36
-
-			ULink([{
-				id: "usr10obvm7i26qu0", // 后台生成的裂变活动LinkID
-				data: paramObj,
-				selector: ".openapp", //按钮的名称
-				// 可选高级功能，具体含义请看下方U-Link API文档
-				auto: false,
-				timeout: 2000,
-				lazy: false,
-				proxyOpenDownload: myDownloadStyle,
-			}]); 
 			
 			// 自定义下载样式
 			function myDownloadStyle(defaultAction, LinkInstance) {
@@ -101,6 +90,19 @@
 			       console.log("原版下载样式")
 			    }
 			}
+
+			ULink([{
+				id: "usr10obvm7i26qu0", // 后台生成的裂变活动LinkID
+				data: paramObj,
+				selector: ".openapp", //按钮的名称
+				// 可选高级功能，具体含义请看下方U-Link API文档
+				auto: false,
+				timeout: 2000,
+				lazy: false,
+				proxyOpenDownload: myDownloadStyle,
+			}]); 
+			
+			
 
 			var video = document.getElementById('myVideo')
 			var video_control_tool_icon = document.getElementById('video_control_tool_icon')
