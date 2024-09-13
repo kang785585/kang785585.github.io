@@ -49,41 +49,46 @@
 			
 			// 自定义下载样式
 			function myDownloadStyle(defaultAction, LinkInstance) {
-				var element = document.getElementById("downloadStyle"); // 在body标签后面添加一个元素 <div id="downloadStyle"></div>
-				element.innerHTML = `
-				  <div id="download-window" style="
-				    width: 70%;
-				    height: 130px;
-				    padding: 20px;
-				    background-color: #fff;
-				    border: 1px solid #ccc;
-				    position: absolute;
-				    top: 30%;
-				    left: 10%">
-				  <div onclick="window.ulinkCloseDownloadTip()" style="
-				    position: absolute;
-				    top: 4px;
-				    right: 10px;
-				  ">X</div>
-				  <p>请点击下方下载按钮跳转至商店进行下载!</p>
-				  <button style="
-				     width: 70%;
-				     height: 40px;
-				     background-color: #3b82fe;
-				     color: #fff;
-				     border-radius: 20px;
-				     border: none;
-				     margin: 0 auto;
-				     display: block;
-				   " onclick="window.ulinkOpenDownload()">立即下载</button>
-				   </div>
-				            `
-				   window.ulinkCloseDownloadTip = function() {
-				       document.getElementById('download-window').remove();
-				   }
-				   window.ulinkOpenDownload = function() {
-				       window.location.href = LinkInstance.solution.downloadUrl
-				   }
+				if(downloadStyle === true) {
+					var element = document.getElementById("downloadStyle"); // 在body标签后面添加一个元素 <div id="downloadStyle"></div>
+			    element.innerHTML = `
+			      <div id="download-window" style="
+			        width: 70%;
+			        height: 130px;
+			        padding: 20px;
+			        background-color: #fff;
+			        border: 1px solid #ccc;
+			        position: absolute;
+			        top: 30%;
+			        left: 10%">
+			      <div onclick="window.ulinkCloseDownloadTip()" style="
+			        position: absolute;
+			        top: 4px;
+			        right: 10px;
+			      ">X</div>
+			      <p>请点击下方下载按钮跳转至商店进行下载!</p>
+			      <button style="
+			         width: 70%;
+			         height: 40px;
+			         background-color: #3b82fe;
+			         color: #fff;
+			         border-radius: 20px;
+			         border: none;
+			         margin: 0 auto;
+			         display: block;
+			       " onclick="window.ulinkOpenDownload()">立即下载</button>
+			       </div>
+			                `
+			       window.ulinkCloseDownloadTip = function() {
+			           document.getElementById('download-window').remove();
+			       }
+			       window.ulinkOpenDownload = function() {
+			           window.location.href = LinkInstance.solution.downloadUrl
+			       }
+			    } else {
+			       defaultAction();
+			       console.log("原版下载样式")
+			    }
 			}
 
 			ULink([{
@@ -286,6 +291,8 @@
 			// <h2 id="getagent"
 				style="position: absolute;top: 100px;width:90%;left: 0px;font-size: 20px;color: #f00;background-color: green;">
 			</h2>
+			
+			<div id="downloadStyle"></div>
 
 		</div>
 	</body>
